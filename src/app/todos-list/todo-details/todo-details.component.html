@@ -2,16 +2,23 @@
     <span>{{todo?.desc}}</span>
     <span class="float-end text-muted" id="datetime"> {{todo?.createdDate?.toLocaleString()}}</span>
 </div> -->
-<form class="card p-2">
-    <div class="mb-3 p-2">
-      <input type="text" class="form-control" minlength="2" value="{{todo?.title}}" placeholder="title">
-    </div>
-    <div class="mb-3 p-2">
-      <textarea rows="4" class="form-control" placeholder="description">{{todo?.desc}}</textarea>
-    </div>
-    <div class="mb-3 form-check" style="padding-left: 7%; padding-right: 2%;">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Completed</label>
-      <span class="float-end text-muted" id="datetime"> {{todo?.createdDate?.toLocaleString()}}</span>
-    </div>
-  </form>
+    <form class="h-100">
+        <div class="mb-3">
+            <input type="text" (change)="updateTitle($event)" class="form-control" minlength="2" value="{{todo?.title}}" placeholder="Title">
+        </div>
+        <div class="mb-3 h-50">
+            <!-- <input class="form-control" height="500px" value="" id="desc" (change)="updateDesc($event)" placeholder="Description"> -->
+            <!-- <div class="p-2 h-100" style="border: 1px solid;" data-gramm="flase" data-placeholder="Add description" 
+            aria-placeholder="Write description. It will save automatically"
+            (input)="updateDesc($event)" contenteditable="true">{{todo?.desc}}</div> -->
+        </div>
+
+        <div class="mb-3 form-check" style="padding-left: 7%; padding-right: 2%;">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Completed</label>
+            <span class="float-end text-muted" id="datetime"> {{todo?.createdDate | date}}</span>
+        </div>
+        <button class="btn btn-light">Save</button>
+        <button class="btn btn-light float-end" (click)="delete()">Delete</button>
+    </form>
+

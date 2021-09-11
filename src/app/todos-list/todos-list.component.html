@@ -1,12 +1,12 @@
-<div class="container-fluid pt-2 ps-5 pe-5">
-    <div class="row p-2">
+<div class="container-fluid">
+    <div class="row ps-2 pt-2">
         <div class="col">
             <h2 class="display-3">My Day</h2>
             <span class="small ps-3">Wedynesday, September 8</span>
         </div>
     </div>
 
-    <div class="row p-4">
+    <div class="row pt-4 pe-4 ps-4">
         <div class="col">
             <form (ngSubmit)="addTodo(form)" #form="ngForm" >
                 <div class="input-group mb-3" ngModelGroup="todoData">
@@ -27,19 +27,19 @@
             </form>
         </div>
     </div>
-    <div class="row">
+    <div class="row pe-4" style="padding-left: 5.2%;">
         <div class="col-8">
-            <div class="row pe-4 pb-3" style="padding-left: 5.5%;">
+            <div class="row  pb-3">
                 <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let todo of todos">
+                        <li class="list-group-item" *ngFor="let todo of unCompletedTodos">
                             <app-todo-item [todo]="todo"></app-todo-item>
                         </li>
                 </ul>
             </div>
-            <div class="row pe-4" style="padding-left: 5.5%;">
-                <h2>Completed</h2>
+            <div class="row">
+                <h2 class="display-6">Completed</h2>
                 <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let todo of todos">
+                        <li class="list-group-item" *ngFor="let todo of completedTodos">
                             <app-todo-item [todo]="todo"></app-todo-item>
                         </li>
                 </ul>

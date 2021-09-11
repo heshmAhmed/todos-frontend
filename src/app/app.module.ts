@@ -16,7 +16,7 @@ import { TodoDetailsComponent } from './todos-list/todo-details/todo-details.com
     TodosListComponent,
     HeaderComponent,
     TodoItemComponent,
-    TodoDetailsComponent
+    TodoDetailsComponent,
   ],
   imports: [
     BrowserModule,
