@@ -1,0 +1,17 @@
+<!-- <div>
+    <span>{{todo?.desc}}</span>
+    <span class="float-end text-muted" id="datetime"> {{todo?.createdDate?.toLocaleString()}}</span>
+</div> -->
+<form class="card p-2">
+    <div class="mb-3 p-2">
+      <input type="text" class="form-control" minlength="2" value="{{todo?.title}}" placeholder="title">
+    </div>
+    <div class="mb-3 p-2">
+      <textarea rows="4" class="form-control" placeholder="description">{{todo?.desc}}</textarea>
+    </div>
+    <div class="mb-3 form-check" style="padding-left: 7%; padding-right: 2%;">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Completed</label>
+      <span class="float-end text-muted" id="datetime"> {{todo?.createdDate?.toLocaleString()}}</span>
+    </div>
+  </form>

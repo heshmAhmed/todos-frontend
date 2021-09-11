@@ -9,7 +9,7 @@
     <div class="row p-4">
         <div class="col">
             <form (ngSubmit)="addTodo(form)" #form="ngForm" >
-                <div class="input-group mb-3" ngModelGroup="userdata">
+                <div class="input-group mb-3" ngModelGroup="todoData">
                     <button 
                         class="btn btn-primary"
                         type="submit" 
@@ -18,7 +18,7 @@
                     <input 
                         ngModel
                         type="text" 
-                        name="inputTodo" 
+                        name="todoTitle" 
                         class="form-control" 
                         placeholder="Enter Todo..." 
                         minlength="2" 
@@ -27,20 +27,27 @@
             </form>
         </div>
     </div>
-    <div class="row pe-4" style="padding-left: 5.5%;">
-        <ul class="list-group">
-                <li class="list-group-item">
-                    <div class="d-flex">
-                        <input class="form-check-input me-3" style="cursor: pointer;" type="checkbox" value="" aria-label="...">
-                        <div class="w-100" style="cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                                Some placeholder content for the collapse component.
-                        </div>
-                    </div>
-                    <div class="collapse" style="padding-left: 2.4%;" id="collapseExample">
-                            desc sdl;mksdl;ksdl;ksdl;dskl;
-                    </div>
-                </li>
-        </ul>
+    <div class="row">
+        <div class="col-8">
+            <div class="row pe-4 pb-3" style="padding-left: 5.5%;">
+                <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let todo of todos">
+                            <app-todo-item [todo]="todo"></app-todo-item>
+                        </li>
+                </ul>
+            </div>
+            <div class="row pe-4" style="padding-left: 5.5%;">
+                <h2>Completed</h2>
+                <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let todo of todos">
+                            <app-todo-item [todo]="todo"></app-todo-item>
+                        </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4">
+            <app-todo-details *ngIf="selectedTodo" [todo]="selectedTodo"> *ngIf="selectedTodo"</app-todo-details>
+        </div>
     </div>
     
 </div>

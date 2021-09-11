@@ -9,26 +9,26 @@ import { TodoService } from "../service/todo.service";
     styleUrls: ["./todos-list.component.css"]
 })
 export class TodosListComponent implements OnInit{
-    inputTodo?: string;
     todos: Todo [] = [];
-    public isCollapsed = false;
+    selectedTodo?: Todo;    
 
 
     constructor(private todoService: TodoService) {
     }
 
     ngOnInit(): void {
+        this.todoService.selectedTodoObs.subscribe((todo)=>{
+            this.selectedTodo = todo;
+        });
         this.todoService.todosObservable.subscribe((todos: Todo[])=>{
             this.todos = todos;
         })
         this.todos = this.todoService.getTodos();
-        console.log(this.todos);
-
     }
     
     addTodo(form: NgForm){
         if(form.valid){
-            this.todoService.addTodo({title: form.value.userdata.inputTodo, desc: "", complieted: false, createdDate: new Date()})
+            this.todoService.addTodo({title: form.value.todoData.toodoTitle, desc: "", completed: false, createdDate: new Date()})
             console.log(this.todos);
             form.reset();
         }

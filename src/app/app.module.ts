@@ -7,12 +7,16 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TodoService } from './service/todo.service';
 import { TodosListComponent } from './todos-list/todos-list.component';
+import { TodoItemComponent } from './todos-list/todo-item/todo-item.component';
+import { TodoDetailsComponent } from './todos-list/todo-details/todo-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodosListComponent,
-    HeaderComponent
+    HeaderComponent,
+    TodoItemComponent,
+    TodoDetailsComponent
   ],
   imports: [
     BrowserModule,
