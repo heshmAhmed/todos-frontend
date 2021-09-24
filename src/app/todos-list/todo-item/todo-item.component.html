@@ -1,6 +1,4 @@
-<div class="d-flex" (click) ="onSelect()">
-    <div class="w-100" style="cursor: pointer;">
-        <span>{{todo.title}}</span>
-        <span class="float-end text-muted" id="datetime"> {{todo.createdDate | date}}</span>
-    </div>
+<div class="d-inline" style="cursor: pointer;" (click) ="onSelect()">
+    <span>{{todo.title}}</span>
+    <span class="float-end text-muted" id="datetime"> {{todo.createdDate | date}}</span>
 </div>

@@ -14,7 +14,13 @@
         </div>
 
         <div class="mb-3 form-check" style="padding-left: 7%; padding-right: 2%;">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <input 
+                type="checkbox" 
+                class="form-check-input" 
+                (change)="toggle($event)" 
+                id="exampleCheck1"
+                [checked]="todo?.completed"
+            >
             <label class="form-check-label" for="exampleCheck1">Completed</label>
             <span class="float-end text-muted" id="datetime"> {{todo?.createdDate | date}}</span>
         </div>

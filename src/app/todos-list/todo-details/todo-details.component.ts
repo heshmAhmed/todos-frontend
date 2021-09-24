@@ -29,5 +29,12 @@ export class TodoDetailsComponent implements OnInit {
     this.todoService.update(this.todo!);
   }
 
+  toggle(event: any){
+    if(event.target.checked)
+      this.todoService.addToCompleted(this.todo!);
+    else
+      this.todoService.addToUnCompleted(this.todo!);
+  }
+
 
 }

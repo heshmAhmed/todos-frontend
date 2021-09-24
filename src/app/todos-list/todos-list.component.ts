@@ -11,9 +11,7 @@ import { TodoService } from "../service/todo.service";
 export class TodosListComponent implements OnInit{
     completedTodos: Todo[] = [];
     unCompletedTodos: Todo[] = [];
-
     selectedTodo?: Todo;    
-
 
     constructor(private todoService: TodoService) {
     }
@@ -25,8 +23,6 @@ export class TodosListComponent implements OnInit{
         this.completedTodos = this.todoService.completedTodos;
         this.unCompletedTodos = this.todoService.unCompletedTodos;
     }
-
-    
     
     addTodo(form: NgForm){
         if(form.valid){
@@ -34,7 +30,11 @@ export class TodosListComponent implements OnInit{
             form.reset();
         }
     }
-    aa(){
-        console.log(true)
+
+    addToCompleted(todo: Todo){
+        this.todoService.addToCompleted(todo);
+    }
+    addToUnCompleted(todo: Todo){
+        this.todoService.addToUnCompleted(todo);
     }
 }

@@ -31,7 +31,8 @@
         <div class="col-8">
             <div class="row  pb-3">
                 <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let todo of unCompletedTodos">
+                        <li class="list-group-item" *ngFor="let todo of unCompletedTodos">    
+                            <button class="d-inline btn p-0 pb-1 me-1" (click)="addToCompleted(todo)"><i class="bi bi-circle"></i></button>
                             <app-todo-item [todo]="todo"></app-todo-item>
                         </li>
                 </ul>
@@ -40,6 +41,7 @@
                 <h2 class="display-6">Completed</h2>
                 <ul class="list-group">
                         <li class="list-group-item" *ngFor="let todo of completedTodos">
+                            <button class="d-inline btn p-0 pb-1 me-1" (click)= "addToUnCompleted(todo)"><i class="bi bi-check-circle"></i></button>
                             <app-todo-item [todo]="todo"></app-todo-item>
                         </li>
                 </ul>

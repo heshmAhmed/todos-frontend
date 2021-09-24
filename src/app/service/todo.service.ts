@@ -46,5 +46,18 @@ export class TodoService{
     update(todo: Todo){
         
     }
-    
+
+    addToCompleted(todo: Todo){
+        todo.completed = true;
+        let index = this.unCompletedTodos.indexOf(todo, 0);
+        this.unCompletedTodos.splice(index, 1);
+        this.completedTodos.push(todo);
+    }
+
+    addToUnCompleted(todo: Todo){
+        todo.completed = false;
+        let index = this.completedTodos.indexOf(todo, 0);
+        this.completedTodos.splice(index, 1);
+        this.unCompletedTodos.push(todo);
+    }
 }
