@@ -1,40 +1,35 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Todo } from 'src/app/model/Todo';
+import { Todo } from 'src/app/model/todo.model';
 import { TodoService } from 'src/app/service/todo.service';
 
 @Component({
   selector: 'app-todo-details',
   templateUrl: './todo-details.component.html',
-  styleUrls: ['./todo-details.component.css']
+  styleUrls: ['./todo-details.component.css'],
 })
 export class TodoDetailsComponent implements OnInit {
   @Input() todo?: Todo;
-  
-  constructor(private todoService: TodoService) { }
 
-  ngOnInit(): void {
-  }
-  
-  delete(){
+  constructor(private todoService: TodoService) {}
+
+  ngOnInit(): void {}
+
+  delete() {
     this.todoService.delete(this.todo!);
   }
 
-  updateTitle(event: any){
+  updateTitle(event: any) {
     this.todo!.title = (<HTMLInputElement>event.target).value;
     this.todoService.update(this.todo!);
   }
 
-  updateDesc(event: any){
+  updateDesc(event: any) {
     this.todo!.desc = (<HTMLInputElement>event.target).value;
     this.todoService.update(this.todo!);
   }
 
-  toggle(event: any){
-    if(event.target.checked)
-      this.todoService.addToCompleted(this.todo!);
-    else
-      this.todoService.addToUnCompleted(this.todo!);
+  toggle(event: any) {
+    if (event.target.checked) this.todoService.addToCompleted(this.todo!);
+    else this.todoService.addToUnCompleted(this.todo!);
   }
-
-
 }

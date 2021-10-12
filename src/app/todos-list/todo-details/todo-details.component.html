@@ -22,7 +22,7 @@
                 [checked]="todo?.completed"
             >
             <label class="form-check-label" for="exampleCheck1">Completed</label>
-            <span class="float-end text-muted" id="datetime"> {{todo?.createdDate | date}}</span>
+            <span class="float-end text-muted" id="datetime"> {{todo?.creatDate | date}}</span>
         </div>
         <button class="btn btn-light">Save</button>
         <button class="btn btn-light float-end" (click)="delete()">Delete</button>
