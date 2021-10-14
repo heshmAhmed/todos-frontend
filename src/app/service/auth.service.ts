@@ -7,7 +7,7 @@ import { User } from '../model/user.model';
 import jwt_decode from 'jwt-decode';
 import { Jwt } from '../model/jwt.model';
 import { environment } from 'src/environments/environment';
-import { localStorageService } from './local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 import { TodoService } from './todo.service';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private lStorageService: localStorageService,
+    private lStorageService: LocalStorageService,
     private todoService: TodoService
   ) {}
 

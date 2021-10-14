@@ -7,12 +7,13 @@ import { TodoService } from './service/todo.service';
 import { TodosListComponent } from './todos-list/todos-list.component';
 import { TodoItemComponent } from './todos-list/todo-item/todo-item.component';
 import { TodoDetailsComponent } from './todos-list/todo-details/todo-details.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from './service/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
-import { localStorageService } from './service/local-storage.service';
+import { LocalStorageService } from './service/local-storage.service';
+import { AuthInterceptorService } from './service/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,16 @@ import { localStorageService } from './service/local-storage.service';
     HttpClientModule,
     AppRoutingModule,
   ],
-  providers: [TodoService, AuthService, localStorageService],
+  providers: [
+    TodoService,
+    AuthService,
+    LocalStorageService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

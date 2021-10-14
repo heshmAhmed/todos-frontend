@@ -3,7 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Todo } from '../model/todo.model';
 import { AuthService } from './auth.service';
-import { localStorageService } from './local-storage.service';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class TodoService {
@@ -13,7 +13,7 @@ export class TodoService {
 
   constructor(
     private http: HttpClient,
-    private lStorageService: localStorageService
+    private lStorageService: LocalStorageService
   ) {}
 
   setTodosLists(todos: Todo[]) {
@@ -62,11 +62,7 @@ export class TodoService {
 
   getTodos() {
     this.http
-      .get<Todo[]>(environment.url + 'users/todos', {
-        headers: new HttpHeaders({
-          Authorization: this.lStorageService.getCurrentUser().token,
-        }),
-      })
+      .get<Todo[]>(environment.url + 'users/todos')
       .subscribe((response) => {
         this.setTodosLists(response);
       });

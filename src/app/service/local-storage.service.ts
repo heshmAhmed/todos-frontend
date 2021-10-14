@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../model/user.model';
 
 @Injectable()
-export class localStorageService {
+export class LocalStorageService {
   LOCAL_STORAGE_KEY: string = 'userToken';
 
   public setUserToLocalStorage(user: User) {
