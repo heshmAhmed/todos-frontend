@@ -1,20 +1,14 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Todo } from '../model/todo.model';
-import { AuthService } from './auth.service';
-import { LocalStorageService } from './local-storage.service';
-
 @Injectable()
 export class TodoService {
   public completedTodos: Todo[] = [];
   public unCompletedTodos: Todo[] = [];
   public selectedTodoObs = new EventEmitter<Todo>();
 
-  constructor(
-    private http: HttpClient,
-    private lStorageService: LocalStorageService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   setTodosLists(todos: Todo[]) {
     todos.map((todo) => {
@@ -24,14 +18,12 @@ export class TodoService {
   }
 
   handleLogout() {
-    this.completedTodos = [];
-    this.unCompletedTodos = [];
+    this.completedTodos.length = 0;
+    this.unCompletedTodos.length = 0;
   }
 
   addTodo(todo: Todo) {
     this.unCompletedTodos.push(todo);
-    console.log(this.completedTodos);
-    console.log(this.unCompletedTodos);
   }
 
   delete(todo: Todo) {

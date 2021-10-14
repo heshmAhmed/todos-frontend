@@ -17,7 +17,7 @@
           <a class="nav-link fw-light" routerLink="/auth" aria-current="page">Login</a>
         </li>
         <li class="nav-item" routerLinkActive="active" *ngIf="isAuthenticated">
-          <a class="nav-link fw-light" routerLink="/" aria-current="page" (click)="onLogout()">Logout</a>
+          <a class="nav-link fw-light" routerLink="/todos" aria-current="page" (click)="onLogout()">Logout</a>
         </li>
       </ul>
     </div>

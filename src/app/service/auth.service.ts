@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Todo } from '../model/todo.model';
 import { tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../model/user.model';
 import jwt_decode from 'jwt-decode';
 import { Jwt } from '../model/jwt.model';
@@ -12,7 +12,7 @@ import { TodoService } from './todo.service';
 
 @Injectable()
 export class AuthService {
-  userObservable = new Subject<User>();
+  userObservable = new BehaviorSubject<User>(null!);
   private tokenExpirationTimer?: any;
 
   constructor(

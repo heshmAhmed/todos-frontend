@@ -12,8 +12,8 @@ import { TodoService } from '../service/todo.service';
   styleUrls: ['./todos-list.component.css'],
 })
 export class TodosListComponent implements OnInit {
-  completedTodos: Todo[] = [];
-  unCompletedTodos: Todo[] = [];
+  completedTodos?: Todo[];
+  unCompletedTodos?: Todo[];
   selectedTodo?: Todo;
   previousUrl?: string;
 
