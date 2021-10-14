@@ -13,6 +13,7 @@ import { TodoService } from './todo.service';
 @Injectable()
 export class AuthService {
   userObservable = new Subject<User>();
+  private tokenExpirationTimer?: any;
 
   constructor(
     private http: HttpClient,
@@ -44,12 +45,13 @@ export class AuthService {
       decodedToken.sub,
       decodedToken.username,
       userEmail,
-      new Date(decodedToken.exp * 1000),
-      new Date(decodedToken.iat * 1000),
+      decodedToken.exp * 1000,
+      decodedToken.iat * 1000,
       encodedToken,
       body
     );
     this.userObservable.next(user);
+    this.autoLogout(user._tokenExpDate - user._tokenIatDate);
     this.lStorageService.setUserToLocalStorage(user);
   }
 
@@ -59,16 +61,24 @@ export class AuthService {
     if (this.checkExpDate(user._tokenExpDate)) {
       this.todoService.getTodos();
       this.userObservable.next(user);
+      this.autoLogout(user._tokenExpDate - user._tokenIatDate);
     }
+  }
+
+  autoLogout(duration: number) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logout();
+    }, duration);
   }
 
   logout() {
     this.lStorageService.clearLocalStorage();
     this.userObservable.next(null!);
+    clearTimeout(this.tokenExpirationTimer);
   }
 
-  checkExpDate(date: Date) {
-    if (!date || new Date() > date) return false;
+  checkExpDate(date: number) {
+    if (!date || new Date() > new Date(date)) return false;
     return true;
   }
 }
