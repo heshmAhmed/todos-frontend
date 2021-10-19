@@ -28,7 +28,6 @@ export class AuthComponent {
         this.error = 'Unknown error happend!';
       }
     );
-
     form.reset();
   }
 }

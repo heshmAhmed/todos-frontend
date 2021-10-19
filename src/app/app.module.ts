@@ -14,6 +14,7 @@ import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
 import { LocalStorageService } from './service/local-storage.service';
 import { AuthInterceptorService } from './service/auth-interceptor.service';
+import { SignUpComponent } from './signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthInterceptorService } from './service/auth-interceptor.service';
     TodoDetailsComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

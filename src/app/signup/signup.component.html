@@ -1,0 +1,42 @@
+<main class="form-signin">
+    <div class="alert alert-danger" *ngIf="error">{{error}}</div>
+
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+        <h1 class="h3 mb-4 fw-lighter text-center">Welcome to todos</h1>
+
+        <div class="form-floating">
+            <input type="text" class="form-control" id="firstname" ngModel name="firstname" required
+                placeholder="Firstname" />
+            <label for="firstname">Firstname</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="lastname" ngModel name="lastname" required
+                placeholder="Lastname" />
+            <label for="lastname">Lastname</label>
+        </div>
+        <div class="form-floating">
+            <input type="email" email class="form-control" id="email" ngModel name="email" required
+                placeholder="Email" />
+            <label for="email">Email</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" placeholder="Password" ngModel name="password"
+                required minlength="4" />
+            <label for="password">Password</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="conpassword" placeholder="Confirm your password" ngModel
+                name="conpassword" required minlength="4" />
+            <label for="conpassword">Confirm your password</label>
+        </div>
+        <div class="alert alert-danger" *ngIf="signupForm.value.password !== signupForm.value.conpassword">
+            Passwords don't match.
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit"
+            [disabled]="!signupForm.valid || signupForm.value.password !== signupForm.value.conpassword">
+            Sign up
+        </button>
+    </form>
+    <loading-spinner *ngIf="isLoading"></loading-spinner>
+</main>

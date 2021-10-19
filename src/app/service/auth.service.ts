@@ -38,6 +38,20 @@ export class AuthService {
       );
   }
 
+  signUp(
+    firstname: string,
+    lastname: string,
+    email: string,
+    password: string
+  ): Observable<any> {
+    return this.http.post(environment.url + 'users/signup', {
+      firstName: firstname,
+      lastName: lastname,
+      email: email,
+      password: password,
+    });
+  }
+
   handleAuthentication(body: Todo[], encodedToken: string, userEmail: string) {
     let decodedToken: Jwt = jwt_decode(encodedToken);
     let user = new User(
@@ -62,6 +76,7 @@ export class AuthService {
         user.todos = todos;
         this.userObservable.next(user);
       });
+      this.userObservable.next(user);
       this.autoLogout(user._tokenExpDate - user._tokenIatDate);
     }
   }
