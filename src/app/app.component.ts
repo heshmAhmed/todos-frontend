@@ -15,11 +15,10 @@ export class AppComponent {
 
   ngOnInit(): void {
     this.authService.userObservable.subscribe((user) => {
-      if (user) this.todoService.setTodosLists(user.todos);
+      if (user) this.todoService.handleLogin(user.todos);
       else this.todoService.handleLogout();
     });
-
-    this.authService.autoLogin();
+    this.authService.autoLogin(this.todoService);
   }
   title = 'todos';
 }

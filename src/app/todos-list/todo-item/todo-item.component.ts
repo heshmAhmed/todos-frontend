@@ -15,6 +15,6 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {}
 
   onSelect() {
-    this.todoService.selectedTodoObs.emit(this.todo);
+    this.todoService.selectedTodo.emit(this.todo);
   }
 }

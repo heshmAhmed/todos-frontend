@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Todo } from '../model/todo.model';
 import { tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../model/user.model';
 import jwt_decode from 'jwt-decode';
 import { Jwt } from '../model/jwt.model';
@@ -17,8 +17,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
-    private lStorageService: LocalStorageService,
-    private todoService: TodoService
+    private lStorageService: LocalStorageService
   ) {}
 
   logIn(email: string, password: string) {
@@ -55,12 +54,14 @@ export class AuthService {
     this.lStorageService.setUserToLocalStorage(user);
   }
 
-  autoLogin() {
+  autoLogin(todoService: TodoService) {
     let user = this.lStorageService.getCurrentUser();
     if (!user) return;
     if (this.checkExpDate(user._tokenExpDate)) {
-      this.todoService.getTodos();
-      this.userObservable.next(user);
+      todoService.getTodos().subscribe((todos) => {
+        user.todos = todos;
+        this.userObservable.next(user);
+      });
       this.autoLogout(user._tokenExpDate - user._tokenIatDate);
     }
   }

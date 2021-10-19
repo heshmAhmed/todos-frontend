@@ -20,11 +20,11 @@ export class TodosListComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit(): void {
-    this.todoService.selectedTodoObs.subscribe((todo) => {
+    this.todoService.selectedTodo.subscribe((todo) => {
       this.selectedTodo = todo;
     });
     this.completedTodos = this.todoService.completedTodos;
-    this.unCompletedTodos = this.todoService.unCompletedTodos;
+    this.unCompletedTodos = this.todoService.uncompletedTodos;
   }
 
   addTodo(form: NgForm) {
@@ -43,6 +43,6 @@ export class TodosListComponent implements OnInit {
     this.todoService.addToCompleted(todo);
   }
   addToUnCompleted(todo: Todo) {
-    this.todoService.addToUnCompleted(todo);
+    this.todoService.addToUncompleted(todo);
   }
 }

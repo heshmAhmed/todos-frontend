@@ -15,21 +15,21 @@ export class TodoDetailsComponent implements OnInit {
   ngOnInit(): void {}
 
   delete() {
-    this.todoService.delete(this.todo!);
+    this.todoService.deleteTodo(this.todo!);
   }
 
   updateTitle(event: any) {
     this.todo!.title = (<HTMLInputElement>event.target).value;
-    this.todoService.update(this.todo!);
+    this.todoService.updateTodo(this.todo!);
   }
 
   updateDesc(event: any) {
     this.todo!.desc = (<HTMLInputElement>event.target).value;
-    this.todoService.update(this.todo!);
+    this.todoService.updateTodo(this.todo!);
   }
 
   toggle(event: any) {
     if (event.target.checked) this.todoService.addToCompleted(this.todo!);
-    else this.todoService.addToUnCompleted(this.todo!);
+    else this.todoService.addToUncompleted(this.todo!);
   }
 }
