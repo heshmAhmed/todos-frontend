@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'https://todos-app-demo.herokuapp.com/api/v1/',
+  url: 'https://todos-app-api-v1.herokuapp.com/api/v1/',
 };
 
 /*
