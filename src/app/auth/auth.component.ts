@@ -25,7 +25,7 @@ export class AuthComponent {
       },
       () => {
         this.isLoading = false;
-        this.error = 'Unknown error happend!';
+        this.error = 'Wrong email or password!';
       }
     );
     form.reset();
