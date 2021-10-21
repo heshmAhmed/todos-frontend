@@ -60,6 +60,7 @@ export class TodoService implements ITodoService, IAuthTodoService {
   }
 
   handleLogin(todos: Todo[]): void {
+    this.handleLogout();
     todos.map((todo) => {
       if (todo.completed) this.completedTodos.push(todo);
       else this.uncompletedTodos.push(todo);
