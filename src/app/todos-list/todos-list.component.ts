@@ -32,7 +32,7 @@ export class TodosListComponent implements OnInit {
     if (form.valid) {
       this.todoService.addTodo({
         title: form.value.todoData.todoTitle,
-        desc: '',
+        desc: 'Write description. It will save automatically',
         completed: false,
         creatDate: new Date(),
       });

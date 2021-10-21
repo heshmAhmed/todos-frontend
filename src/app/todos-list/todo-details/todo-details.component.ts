@@ -16,15 +16,18 @@ export class TodoDetailsComponent implements OnInit {
 
   delete() {
     this.todoService.deleteTodo(this.todo!);
+    this.todoService.selectedTodo.emit(null!);
   }
 
-  updateTitle(event: any) {
-    this.todo!.title = (<HTMLInputElement>event.target).value;
-    this.todoService.updateTodo(this.todo!);
+  updateTitle(input: any) {
+    if (input.value.length >= 2) {
+      this.todo!.title = input.value;
+      this.todoService.updateTodo(this.todo!);
+    } else input.value = this.todo?.title;
   }
 
-  updateDesc(event: any) {
-    this.todo!.desc = (<HTMLInputElement>event.target).value;
+  updateDesc(input: any) {
+    this.todo!.desc = input.value;
     this.todoService.updateTodo(this.todo!);
   }
 
