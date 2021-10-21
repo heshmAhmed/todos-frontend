@@ -69,6 +69,7 @@ export class TodoService implements ITodoService, IAuthTodoService {
   handleLogout(): void {
     this.completedTodos.length = 0;
     this.uncompletedTodos.length = 0;
+    this.selectedTodo.emit(null!);
   }
 
   getTodos(): Observable<Todo[]> {
